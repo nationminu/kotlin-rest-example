@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class ProductService(private val productRepository: ProductRepository) {
 
-    fun getAllProducts(): List<ProductEntity>
+    fun getAllItems(): List<ProductEntity>
             = productRepository.findAll()
 
     fun getAllResults(): Map<String, Any> {
@@ -16,19 +16,19 @@ class ProductService(private val productRepository: ProductRepository) {
         return mapOf("success" to true, "data" to results)
     }
 
-    fun getProductById(id: String): ProductEntity = productRepository.findById(id)
+    fun getItemById(id: String): ProductEntity = productRepository.findById(id)
         .orElseThrow { NoSuchElementException("Product with id $id not found") }
 
-    fun createProduct(productEntity: ProductEntity): ProductEntity
+    fun createItem(productEntity: ProductEntity): ProductEntity
             = productRepository.save(productEntity)
 
-    fun createProducts(productEntities: List<ProductEntity>): List<ProductEntity> {
+    fun createItems(productEntities: List<ProductEntity>): List<ProductEntity> {
         val entities = productEntities.map { ProductEntity() }
 
         return productRepository.saveAll(productEntities)
     }
 
-    fun updateProduct(id: String, updatedProductEntity: ProductEntity): ProductEntity {
+    fun updateItem(id: String, updatedProductEntity: ProductEntity): ProductEntity {
         if (!productRepository.existsById(id)) {
             throw NoSuchElementException("Product with id $id not found")
         }
@@ -36,7 +36,7 @@ class ProductService(private val productRepository: ProductRepository) {
         return productRepository.save(updatedProductEntity)
     }
 
-    fun deleteProduct(id: String) {
+    fun deleteItem(id: String) {
         if (!productRepository.existsById(id)) {
             throw NoSuchElementException("Product with id $id not found")
         }

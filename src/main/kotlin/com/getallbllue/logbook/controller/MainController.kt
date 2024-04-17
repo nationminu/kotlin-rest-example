@@ -13,28 +13,28 @@ class MainController(private val productService: ProductService) {
             = productService.getAllResults()
 
     @GetMapping("/all")
-    fun getAllProducts(): List<ProductEntity>
-            = productService.getAllProducts()
+    fun getAllItems(): List<ProductEntity>
+            = productService.getAllItems()
 
     @GetMapping("/{id}")
-    fun getProductById(@PathVariable id: String): ProductEntity
-            = productService.getProductById(id)
+    fun getItemById(@PathVariable id: String): ProductEntity
+            = productService.getItemById(id)
 
     @PostMapping
-    fun createProduct(@RequestBody productEntity: ProductEntity): ProductEntity
-            = productService.createProduct(productEntity)
+    fun createItem(@RequestBody productEntity: ProductEntity): ProductEntity
+            = productService.createItem(productEntity)
 
     @PostMapping("/all")
-    fun createProducts(@RequestBody productEntities: List<ProductEntity>): List<ProductEntity> {
-        return productService.createProducts(productEntities)
+    fun createItems(@RequestBody productEntities: List<ProductEntity>): List<ProductEntity> {
+        return productService.createItems(productEntities)
     }
 
     @PutMapping("/{id}")
-    fun updateProduct(@PathVariable id: String, @RequestBody updatedProductEntity: ProductEntity): ProductEntity =
-        productService.updateProduct(id, updatedProductEntity)
+    fun updateItem(@PathVariable id: String, @RequestBody updatedProductEntity: ProductEntity): ProductEntity =
+        productService.updateItem(id, updatedProductEntity)
 
     @DeleteMapping("/{id}")
-    fun deleteProduct(@PathVariable id: String) {
-        productService.deleteProduct(id)
+    fun deleteItem(@PathVariable id: String) {
+        productService.deleteItem(id)
     }
 }

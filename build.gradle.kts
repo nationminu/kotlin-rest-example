@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.23"
 }
 
-group = "com.getallbllue"
+group = "works.souljam"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -33,6 +33,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    implementation("com.google.guava:guava:33.1.0-jre")
+
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")

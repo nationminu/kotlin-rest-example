@@ -43,6 +43,12 @@ class MenuService(private val menuRepository: MenuRepository) {
         menuRepository.deleteById(id)
     }
 
+    fun getHierarchicalItems(): Map<String, Any> {
+        val allMenus = menuRepository.findAll()
+        val rootMenus = allMenus.filter { it.parentId == null }
+        return mapOf("menus" to rootMenus.map { buildMenuNode(it, allMenus) })
+    }
+
     fun getAllMenusHierarchical(): List<MenuEntity> {
         val allMenus = menuRepository.findAll()
         val rootMenus = allMenus.filter { it.parentId == null }

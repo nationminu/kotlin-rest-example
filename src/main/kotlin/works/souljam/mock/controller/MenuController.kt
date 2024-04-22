@@ -1,44 +1,44 @@
 package works.souljam.mock.controller
 
 import works.souljam.mock.entity.MenuEntity
-import works.souljam.mock.service.MenuService
 import org.springframework.web.bind.annotation.*
+import works.souljam.mock.service.MenuService
 
 @RestController
 @RequestMapping("/api/menus")
-class MenuController(private val menuService: MenuService) {
+class MenuController(private val service: MenuService) {
 
     @GetMapping
     fun getAllResults(): Map<String, Any>
-            = menuService.getAllResults()
+            = service.getAllResults()
 
     @GetMapping("/all")
     fun getAllItems(): List<MenuEntity>
-            = menuService.getAllItems()
+            = service.getAllItems()
 
     @GetMapping("/hierarchical")
-    fun getHierarchicalItems(): List<MenuEntity>
-            = menuService.getAllMenusHierarchical()
+    fun getHierarchicalItems(): Map<String, Any>
+            = service.getHierarchicalItems()
 
     @GetMapping("/{id}")
     fun getItemById(@PathVariable id: String): MenuEntity
-            = menuService.getItemById(id)
+            = service.getItemById(id)
 
     @PostMapping
     fun createItem(@RequestBody menuEntity: MenuEntity): MenuEntity
-            = menuService.createItem(menuEntity)
+            = service.createItem(menuEntity)
 
     @PostMapping("/all")
     fun createItems(@RequestBody productEntities: List<MenuEntity>): List<MenuEntity> {
-        return menuService.createItems(productEntities)
+        return service.createItems(productEntities)
     }
 
     @PutMapping("/{id}")
     fun updateItem(@PathVariable id: String, @RequestBody updatedMenuEntity: MenuEntity): MenuEntity =
-        menuService.updateItem(id, updatedMenuEntity)
+        service.updateItem(id, updatedMenuEntity)
 
     @DeleteMapping("/{id}")
     fun deleteItem(@PathVariable id: String) {
-        menuService.deleteItem(id)
+        service.deleteItem(id)
     }
 }
